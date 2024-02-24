@@ -16,7 +16,7 @@ public class Configuration {
     public double calculerTotal(double taxe){
         double prix = 0;
         Composant nom;
-        if(composants[0] != null) {
+        if(composants.length != 0) {
             for (int i = 0; i < composants.length; i++) {
                 nom = composants[i];
                 prix =+ nom.getPrix();
@@ -26,10 +26,12 @@ public class Configuration {
     }
     public Composant rechercher(String categorie){
         String categoriePiece;
-        if(composants[0] != null) {
+        categorie = categorie.toUpperCase();
+        if(composants.length != 0) {
+            System.out.println("1");
             for (int i = 0; i < composants.length; i++) {
                  categoriePiece = composants[i].getCategorie();
-                 if(categoriePiece == categorie){
+                 if(categoriePiece.equals(categorie)){
                      return composants[i];
                  }
             }
@@ -62,13 +64,13 @@ public class Configuration {
     return false;
     }
     public boolean retirer(Composant composant) {
-
+return false;
     }
     public boolean remplacer(Composant composant){
-
+return false;
     }
     public String toString() {
-
+return "yes";
     }
 
     public Composant[] getComposants() { return composants; }
