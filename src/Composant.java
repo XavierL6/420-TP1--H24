@@ -5,7 +5,7 @@ public class Composant {
     private double prix;
     private double rabais;
     public Composant(String pcategorie, String pmarque, String pnom, double pprix){
-        this.categorie = pcategorie.toUpperCase();
+        this.categorie = pcategorie.toUpperCase().trim();
         this.marque = pmarque;
         this.nom = pnom;
         this.prix = pprix;
