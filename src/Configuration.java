@@ -2,7 +2,7 @@ public class Configuration {
     private String description;
     private double prixMax;
     private Composant [] composants = new Composant[20];
-    private int nmbComposants = NmbComposants();
+    private int nmbComposants;
     private final int maxComposants = 20;
 
     public Configuration(String description, double prixMax, Composant[] composants){
@@ -11,6 +11,7 @@ public class Configuration {
         for(int i = 0; i < composants.length; i++){
             this.composants[i] = composants[i];
         }
+        this.nmbComposants = NmbComposants();
     }
     public Configuration(Configuration originale){
 
