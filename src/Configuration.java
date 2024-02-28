@@ -14,20 +14,23 @@ public class Configuration {
         this.nmbComposants = NmbComposants();
     }
     public Configuration(Configuration originale){
-
+this.description = new String(originale.description);
+this.prixMax = originale.prixMax;
+for(int i = 0; i < originale.composants.length; i++){
+    this.composants[i] = originale.composants[i];;//ici
+}
     }
     public double calculerTotal(double taxe){
         double prix = 0;
-        Composant nom;
+        double taxes = 1 + taxe;
         if(composants.length != 0) {
             for (int i = 0; i < composants.length; i++) {
                 if(composants[i] != null) {
-                    nom = composants[i];
-                    prix = nom.getPrix() + prix;
+                    prix = composants[i].getPrix() + prix;
                 }
             }
         }
-        return prix;
+        return (prix * taxes);
     }
     public Composant rechercher(String categorie){
         String categoriePiece;
@@ -65,7 +68,7 @@ public class Configuration {
                 for (int i = 0; i < composants.length; i++) {
                     if (composants[i] == null) {
                         composants[i] = composant;
-                        if (calculerTotal(0.15) > prixMax) {
+                        if (calculerTotal(0) > prixMax) {//icii
                             cateCompo = composants[i].getCategorie();
                             nomCompo = composants[i].getNom();
                             marqueCompo = composants[i].getMarque();
@@ -76,7 +79,8 @@ public class Configuration {
                             cateCompo = composants[i].getCategorie();
                             nomCompo = composants[i].getNom();
                             marqueCompo = composants[i].getMarque();
-                            System.out.println("[" + cateCompo + "] " + marqueCompo + " " + nomCompo + " ajoute a la configuration (total = " + calculerTotal(0.15) + "$)");
+                            System.out.println("[" + cateCompo + "] " + marqueCompo + " " + nomCompo + " ajoute a la configuration (total = " + calculerTotal(0) + "$)");
+                            this.nmbComposants = NmbComposants();
                             return true;
                         }
                     }
@@ -103,7 +107,8 @@ public class Configuration {
                             }
                         }
                     }
-                    System.out.println("[" + cateCompo + "] " + marqueCompo + " " + nomCompo + " retirer de la configuration (" + calculerTotal(0.15) + "$)");
+                    System.out.println("[" + cateCompo + "] " + marqueCompo + " " + nomCompo + " retirer de la configuration (total = " + calculerTotal(0) + "$)");
+                    this.nmbComposants = NmbComposants();
                     return true;
                 }
             }
@@ -125,9 +130,9 @@ return false;
                 nomCompo = composants[i].getNom();
                 marqueCompo = composants[i].getMarque();
                 composants[i] = null;
-                System.out.println("[" + cateCompo + "] " + marqueCompo + " " + nomCompo + " retirer de la configuration (" + calculerTotal(0.15) + "$)");
+                System.out.println("[" + cateCompo + "] " + marqueCompo + " " + nomCompo + " retirer de la configuration (total = " + calculerTotal(0) + "$)");
                 composants[i] = composant;
-                System.out.println("[" + cateCompoRempl + "] " + marqueCompoRempl + " " + nomCompoRempl + " ajoute a la configuration (total = " + calculerTotal(0.15) + "$)");
+                System.out.println("[" + cateCompoRempl + "] " + marqueCompoRempl + " " + nomCompoRempl + " ajoute a la configuration (total = " + calculerTotal(0) + "$)");
                 return true;
             }
             }
