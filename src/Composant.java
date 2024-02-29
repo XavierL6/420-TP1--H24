@@ -19,9 +19,9 @@ public class Composant {
         return copie;
     }
     public boolean estIdentique(Composant autre){
-        if(categorie == autre.getCategorie()){
-            if(marque == autre.getMarque()) {
-                if(nom == autre.getNom()) {
+        if(categorie.equals(autre.getCategorie())){
+            if(marque.equals(autre.getMarque())) {
+                if(nom.equals(autre.getNom())) {
                     return true;
                 }
                 else{ return false;}
